@@ -57,7 +57,7 @@
           <tr>
             <td colspan="2" align="right">手机号码：</td>
             <td colspan="3">
-              <input type="text" style="width:100%;height:90%;border-width:2px; border-color: #009f95"  unselectable="on" v-model="student.stuAddress">
+              <input type="text" style="width:100%;height:90%;border-width:2px; border-color: #009f95"  unselectable="on" v-model="student.stuTel">
             </td>
             <td colspan="2" align="right">邮箱：</td>
             <td colspan="3">

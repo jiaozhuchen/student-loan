@@ -93,6 +93,13 @@ export const asyncRouterMap = [
         component: () => import('@/views/ums/contract/update'),
         meta: {title: '合同审批'},
         hidden: true
+      },
+      {
+        path: 'viewContract',
+        name: 'viewContract',
+        component: () => import('@/views/ums/contract/view'),
+        meta: {title: '合同查看'},
+        hidden: true
       }
     ]
   },

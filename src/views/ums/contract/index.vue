@@ -38,42 +38,55 @@
                 v-loading="listLoading"
                 border>
         <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column label="编号" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.id}}</template>
+        <el-table-column label="合同编号" width="100" align="center">
+          <template slot-scope="scope">{{scope.row.contractNumber}}</template>
         </el-table-column>
-        <el-table-column label="名称" align="center">
-          <template slot-scope="scope">{{scope.row.name}}</template>
+        <el-table-column label="贷款学年" align="center">
+          <template slot-scope="scope">{{scope.row.loanTerm}}</template>
         </el-table-column>
-        <el-table-column label="地址" align="center">
-          <template slot-scope="scope">{{scope.row.address}}</template>
+        <el-table-column label="学生姓名" align="center">
+          <template slot-scope="scope">{{scope.row.stuName}}</template>
         </el-table-column>
-        <el-table-column label="联系人" align="center">
-          <template slot-scope="scope">{{scope.row.contacts}}</template>
+        <el-table-column label="身份证号" align="center">
+          <template slot-scope="scope">{{scope.row.idNumber}}</template>
         </el-table-column>
-        <el-table-column label="联系人电话" align="center">
-          <template slot-scope="scope">{{scope.row.phone}}</template>
+        <el-table-column label="学生电话" align="center">
+          <template slot-scope="scope">{{scope.row.stuTel}}</template>
         </el-table-column>
-        <el-table-column label="经营范围"  align="center">
-          <template slot-scope="scope">{{scope.row.business}}</template>
+        <el-table-column label="学校名称"  align="center">
+          <template slot-scope="scope">{{scope.row.stuSchoolname}}</template>
         </el-table-column>
-        <el-table-column label="是否上线" align="center">
+        <el-table-column label="共同借款人姓名"  align="center">
+          <template slot-scope="scope">{{scope.row.stuConame}}</template>
+        </el-table-column>
+        <el-table-column label="共同借款人身份证号"  align="center">
+          <template slot-scope="scope">{{scope.row.stuCoidNumber}}</template>
+        </el-table-column>
+        <el-table-column label="共同借款人电话"  align="center">
+          <template slot-scope="scope">{{scope.row.stuCotel}}</template>
+        </el-table-column>
+        <el-table-column label="银行名称"  align="center">
+          <template slot-scope="scope">{{scope.row.bankName}}</template>
+        </el-table-column>
+        <el-table-column label="银行电话"  align="center">
+          <template slot-scope="scope">{{scope.row.bankTel}}</template>
+        </el-table-column>
+        <el-table-column label="机构名称"  align="center">
+          <template slot-scope="scope">{{scope.row.mechanismName}}</template>
+        </el-table-column>
+        <el-table-column label="机构电话"  align="center">
+          <template slot-scope="scope">{{scope.row.mechanismTel}}</template>
+        </el-table-column>
+        <el-table-column label="合同签订状态" width="100" align="center">
           <template slot-scope="scope">
-            <el-switch
-              @change="handleShowStatusChange(scope.$index, scope.row)"
-              :active-value="1"
-              :inactive-value="0"
-              v-model="scope.row.status">
-            </el-switch>
+            {{scope.row.contractSate | formatStatus}}
           </template>
-        </el-table-column>
-        <el-table-column label="备注"  align="center">
-          <template slot-scope="scope">{{scope.row.note}}</template>
         </el-table-column>
         <el-table-column label="操作" width="200" align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleUpdate(scope.$index, scope.row)">编辑
+              @click="handleView(scope.$index, scope.row)">查看
             </el-button>
           </template>
         </el-table-column>
@@ -130,6 +143,9 @@
       },
       handleUpdate(index, row) {
         this.$router.push({path: '/ums/updateContract', query: {id: row.id}})
+      },
+      handleView(index, row) {
+        this.$router.push({path: '/ums/viewContract', query: {id: row.id}})
       },
       handleShowStatusChange(index, row) {
         let data = new URLSearchParams();
