@@ -10,7 +10,7 @@
           <tr>
             <td colspan="2" width="100" align="right">姓名：</td>
             <td colspan="3" width="150">
-              <input type="text" style="width:100%;height:90%;border-width:2px; border-color: #009f95" unselectable="on" v-model="student.stuName">
+              <input type="text" style="width:100%;height:90%;border-width:2px; border-color: #009f95" readonly="" unselectable="on" v-model="student.stuName">
             </td>
             <td colspan="2" align="right" width="100">身份证号：</td>
             <td colspan="3" width="150">

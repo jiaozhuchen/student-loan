@@ -37,12 +37,10 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 100%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
+          <el-button style="float: left; width: 40%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
             登录
           </el-button>
-        </el-form-item>
-        <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 100%" type="primary" @click.native.prevent="handleToRegister">
+          <el-button style="float: right; width: 40%" type="primary" @click.native.prevent="handleToRegister">
             去注册
           </el-button>
         </el-form-item>

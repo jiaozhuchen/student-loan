@@ -65,10 +65,10 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 100%" type="primary" :loading="loading" @click.native.prevent="handleRegister">
+          <el-button style="float: left; width: 40%" type="primary" :loading="loading" @click.native.prevent="handleRegister">
             注册
           </el-button>
-          <el-button style="width: 100%" type="primary" @click.native.prevent="handleToLogin">
+          <el-button style="float: right; width: 40%" type="primary" @click.native.prevent="handleToLogin">
             去登陆
           </el-button>
         </el-form-item>
