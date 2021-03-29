@@ -10,6 +10,14 @@ export function updateStudentInformation(id,data) {
   })
 }
 
+export function updateStudent(id,data) {
+  return request({
+    url:'/student/'+id,
+    method:'post',
+    data:data
+  })
+}
+
 //得到门店根据ID
 export function getStudentInformation(id) {
   return request({

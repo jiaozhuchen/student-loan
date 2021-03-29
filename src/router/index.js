@@ -143,6 +143,12 @@ export const asyncRouterMap = [
         name: 'student',
         component: () => import('@/views/ums/student/view'),
         meta: {title: '学生信息'},
+      },
+      {
+        path: 'updatePsw',
+        name: 'updatePsw',
+        component: () => import('@/views/ums/student/updatePassword'),
+        meta: {title: '修改密码'},
       }
     ]
   },

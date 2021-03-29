@@ -23,12 +23,6 @@
     <el-card class="operate-container" shadow="never">
       <i class="el-icon-tickets"></i>
       <span>数据列表</span>
-      <el-button
-        class="btn-add"
-        @click="addSupplier()"
-        size="mini">
-        添加
-      </el-button>
     </el-card>
     <div class="table-container">
       <el-table ref="brandTable"
@@ -123,6 +117,17 @@
         listLoading: true,
         multipleSelection: []
       }
+    },
+    filters: {
+      formatStatus(value) {
+        if (value == 0) {
+          return '未签订';
+        } else if (value == 1) {
+          return '已签订';
+        } else if (value == 2) {
+          return '已过期';
+        }
+      },
     },
     created() {
       this.getList();

@@ -9,17 +9,6 @@
         <div style="text-align: center">
           <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
         </div>
-        <h2 class="login-title color-main">助学金贷款申请</h2>
-        <el-form-item prop="stuName">
-          <el-input name="stuName"
-                    type="text"
-                    v-model="student.stuName"
-                    placeholder="请输入姓名">
-          <span slot="prefix">
-            <svg-icon icon-class="user" class="color-main"></svg-icon>
-          </span>
-          </el-input>
-        </el-form-item>
         <el-form-item prop="idNumber">
           <el-input name="idNumber"
                     type="text"
@@ -30,16 +19,16 @@
           </span>
           </el-input>
         </el-form-item>
-        <el-form-item prop="stuTel">
-          <el-input name="stuTel"
-                    type="text"
-                    v-model="student.stuTel"
-                    placeholder="请输入手机号">
-          <span slot="prefix">
-            <svg-icon icon-class="user" class="color-main"></svg-icon>
-          </span>
-          </el-input>
-        </el-form-item>
+<!--        <el-form-item prop="stuPsw">-->
+<!--          <el-input name="stuPsw"-->
+<!--                    :type="pwdType"-->
+<!--                    v-model="student.stuPsw"-->
+<!--                    placeholder="请输入原密码">-->
+<!--          <span slot="prefix">-->
+<!--            <svg-icon icon-class="password" class="color-main"></svg-icon>-->
+<!--          </span>-->
+<!--          </el-input>-->
+<!--        </el-form-item>-->
         <el-form-item prop="stuPsw">
           <el-input name="stuPsw"
                     :type="pwdType"
@@ -61,11 +50,8 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="float: left; width: 40%" type="primary" :loading="loading" @click.native.prevent="handleRegister">
-            注册
-          </el-button>
-          <el-button style="float: right; width: 40%" type="primary" @click.native.prevent="handleToLogin">
-            去登陆
+          <el-button style="float: left; width: 40%" type="primary" :loading="loading" @click.native.prevent="handleUpdatePass">
+            确认
           </el-button>
         </el-form-item>
       </el-form>
@@ -76,13 +62,17 @@
 
 <script>
   import {isvalidUsername} from '@/utils/validate';
-  import {setSupport,getSupport,setCookie,getCookie} from '@/utils/support';
-  import {register} from '@/api/register';
-
+  import {updateStudentInformation, getStudentInformation, updateStudent} from '@/api/student';
+  import { mapGetters } from 'vuex'
   import login_center_bg from '@/assets/images/login_center_bg.png'
 
   export default {
-    name: 'register',
+    name: 'updatePsw',
+    computed: {
+      ...mapGetters([
+        'userId'
+      ])
+    },
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!isvalidUsername(value)) {
@@ -100,11 +90,13 @@
       };
       return {
         student: {
+          id: '',
           stuName: '',
           stuIdNumber: '',
           stuTel: '',
           stuPsw: '',
           rePassword: '',
+          newStuPsw: '',
         },
         loginRules: {
           stuTel: [{required: true, trigger: 'blur'}],
@@ -118,6 +110,10 @@
       }
     },
     created() {
+      getStudentInformation(this.userId).then(response => {
+        this.listLoading = false;
+        this.student.id = response.data.id;
+      });
     },
     methods: {
       showPwd() {
@@ -127,7 +123,7 @@
           this.pwdType = 'password'
         }
       },
-      handleRegister() {
+      handleUpdatePass() {
         this.$refs.studentForm.validate(valid => {
           if (valid) {
             if(this.student.stuPsw != this.student.rePassword) {
@@ -139,16 +135,16 @@
               return ;
             }
             this.loading = true;
-            register(this.student).then(response => {
+            updateStudent(this.student.id,this.student).then(response => {
               this.$message({
-                message: '注册成功请登陆',
+                message: '修改成功请重新登陆',
                 type: 'success',
                 duration: 1000
               });
               this.loading = false;
             }).catch(() => {
               this.$message({
-                message: '注册失败！',
+                message: '原始密码错误！',
                 type: 'error',
                 duration: 1000
               });

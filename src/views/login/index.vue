@@ -14,8 +14,7 @@
           <el-input name="username"
                     type="text"
                     v-model="loginForm.username"
-                    autoComplete="on"
-                    placeholder="请输入手机号">
+                    placeholder="请输入身份证号">
           <span slot="prefix">
             <svg-icon icon-class="user" class="color-main"></svg-icon>
           </span>
@@ -26,7 +25,7 @@
                     :type="pwdType"
                     @keyup.enter.native="handleLogin"
                     v-model="loginForm.password"
-                    autoComplete="on"
+                    autoComplete="off"
                     placeholder="请输入密码">
           <span slot="prefix">
             <svg-icon icon-class="password" class="color-main"></svg-icon>
