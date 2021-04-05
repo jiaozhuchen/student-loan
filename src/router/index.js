@@ -103,28 +103,21 @@ export const asyncRouterMap = [
       }
     ]
   },
-  // {
-  //   path: '/ums',
-  //   component: Layout,
-  //   redirect: '/ums/repayApply',
-  //   name: 'repayApply',
-  //   meta: {title: '还款申请', icon: 'product'},
-  //   children: [
-  //     {
-  //       path: 'repayApply',
-  //       name: 'repayApply',
-  //       component: () => import('@/views/ums/repayApply/index'),
-  //       meta: {title: '还款申请列表', icon: 'product-list'}
-  //     },
-  //     {
-  //       path: 'updateRepayApply',
-  //       name: 'updateRepayApply',
-  //       component: () => import('@/views/ums/repayApply/update'),
-  //       meta: {title: '审核还款申请', icon: 'product-add'},
-  //       hidden: true
-  //     }
-  //   ]
-  // },
+  {
+    path: '/ums',
+    component: Layout,
+    redirect: '/ums/repayApply',
+    name: 'repayApply',
+    meta: {title: '还款申请', icon: 'product'},
+    children: [
+      {
+        path: 'repayApply',
+        name: 'repayApply',
+        component: () => import('@/views/ums/repayApply/index'),
+        meta: {title: '还款申请列表', icon: 'product-list'}
+      }
+    ]
+  },
   {
     path: '/ums',
     component: Layout,
